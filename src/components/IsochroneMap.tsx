@@ -11,6 +11,22 @@ interface Props {
 
 const LINE_COLORS = ["#1f6feb", "#7c3aed", "#0e8a5f", "#d97706"];
 
+// Web Mercator tile math. Basemap: Esri World Street Map, served keyless from
+// ArcGIS Online (note Esri's z/y/x tile order). Tiles load client-side straight
+// from Esri's CDN; the flat rect underneath stays as the loading/failure fallback.
+const TILE = 256;
+const TILE_URL = (z: number, x: number, y: number) =>
+  `https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${z}/${y}/${x}`;
+
+function lonToTileX(lon: number, z: number): number {
+  return ((lon + 180) / 360) * 2 ** z;
+}
+
+function latToTileY(lat: number, z: number): number {
+  const r = (lat * Math.PI) / 180;
+  return (((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * 2 ** z);
+}
+
 function ringsToPath(rings: number[][][], p: (lon: number, lat: number) => [number, number]): string {
   const parts: string[] = [];
   for (const ring of rings) {
@@ -42,13 +58,30 @@ export default function IsochroneMap({ iso, lines }: Props) {
 
   const proj = useMemo(() => {
     const [lon0, lat0, lon1, lat1] = iso.meta.bbox;
-    const latm = (lat0 + lat1) / 2;
-    const kx = 111.32 * Math.cos((latm * Math.PI) / 180);
-    const ky = 110.57;
-    const W = (lon1 - lon0) * kx;
-    const H = (lat1 - lat0) * ky;
-    const p = (lon: number, lat: number): [number, number] => [(lon - lon0) * kx, (lat1 - lat) * ky];
-    return { W, H, p };
+    // Pick the zoom where the study bbox is ~1400 css px wide: enough detail
+    // to read the city (roads, shoreline, neighbourhood labels) without
+    // drowning the page in tile requests.
+    const fracW = (lon1 - lon0) / 360;
+    let z = Math.round(Math.log2(1400 / (TILE * fracW)));
+    z = Math.max(3, Math.min(18, z));
+    const x0 = lonToTileX(lon0, z);
+    const y0 = latToTileY(lat1, z); // north edge -> smaller y
+    const x1 = lonToTileX(lon1, z);
+    const y1 = latToTileY(lat0, z);
+    const W = (x1 - x0) * TILE;
+    const H = (y1 - y0) * TILE;
+    const p = (lon: number, lat: number): [number, number] => [
+      (lonToTileX(lon, z) - x0) * TILE,
+      (latToTileY(lat, z) - y0) * TILE,
+    ];
+    const tx0 = Math.floor(x0);
+    const tx1 = Math.floor(x1 - 1e-9);
+    const ty0 = Math.floor(y0);
+    const ty1 = Math.floor(y1 - 1e-9);
+    const tiles: { x: number; y: number }[] = [];
+    for (let tx = tx0; tx <= tx1; tx++)
+      for (let ty = ty0; ty <= ty1; ty++) tiles.push({ x: tx, y: ty });
+    return { W, H, p, z, tiles, x0, y0 };
   }, [iso]);
 
   const active = iso.modes[mode]?.[String(minutes)];
@@ -130,7 +163,28 @@ export default function IsochroneMap({ iso, lines }: Props) {
           aria-label={`${minutes} ${m.min} ${modeNames[mode] ?? mode} isochrone`}
         >
           <rect x={0} y={0} width={proj.W} height={proj.H} fill="#f4f4f2" />
-          {path && <path d={path} fill="#d80621" fillOpacity={0.28} stroke="#d80621" strokeWidth={0.55} fillRule="evenodd" />}
+          {proj.tiles.map((tl) => (
+            <image
+              key={`${proj.z}/${tl.x}/${tl.y}`}
+              href={TILE_URL(proj.z, tl.x, tl.y)}
+              x={((tl.x - proj.x0) * TILE).toFixed(1)}
+              y={((tl.y - proj.y0) * TILE).toFixed(1)}
+              width={TILE}
+              height={TILE}
+              style={{ filter: "saturate(0.8)" }}
+            />
+          ))}
+          {path && (
+            <path
+              d={path}
+              fill="#d80621"
+              fillOpacity={0.28}
+              stroke="#d80621"
+              strokeWidth={2}
+              strokeLinejoin="round"
+              fillRule="evenodd"
+            />
+          )}
           {showLines &&
             lines.map((l) => {
               const c = stationColor(l.id);
@@ -143,15 +197,15 @@ export default function IsochroneMap({ iso, lines }: Props) {
                 .join("L");
               return (
                 <g key={l.id}>
-                  {d && <path d={`M${d}`} fill="none" stroke={c} strokeWidth={0.8} strokeLinecap="round" />}
+                  {d && <path d={`M${d}`} fill="none" stroke={c} strokeWidth={3} strokeLinecap="round" />}
                   {stations.map((s, i) => {
                     const [x, y] = proj.p(s.lon, s.lat);
-                    return <circle key={i} cx={x} cy={y} r={0.85} fill={c} stroke="#fff" strokeWidth={0.25} />;
+                    return <circle key={i} cx={x} cy={y} r={5.5} fill={c} stroke="#fff" strokeWidth={1.5} />;
                   })}
                 </g>
               );
             })}
-          <circle cx={origin[0]} cy={origin[1]} r={1.15} fill="#0a0f1e" stroke="#fff" strokeWidth={0.4} />
+          <circle cx={origin[0]} cy={origin[1]} r={8} fill="#0a0f1e" stroke="#fff" strokeWidth={2.5} />
         </svg>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line px-6 py-4 text-[14px] text-ink/70">
           <span className="inline-flex items-center gap-2">
@@ -174,6 +228,26 @@ export default function IsochroneMap({ iso, lines }: Props) {
               {m.station}
             </span>
           )}
+          <span className="text-[12px] text-ink/45">
+            {m.basemapBy}{" "}
+            <a
+              href="https://www.esri.com"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-ink/30 underline-offset-2 hover:text-ink"
+            >
+              Esri
+            </a>
+            {" · "}
+            <a
+              href="https://www.openstreetmap.org/copyright"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-ink/30 underline-offset-2 hover:text-ink"
+            >
+              © OpenStreetMap contributors
+            </a>
+          </span>
           <span className="ml-auto rounded-full bg-canada/10 px-3 py-1 text-[12px] font-semibold text-canada">{m.estimated}</span>
         </div>
       </div>

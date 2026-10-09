@@ -50,6 +50,7 @@ const en = {
     station: "proposed station",
     estimated: "Modeled estimate",
     note: "Rings are modeled estimates from scheduled GTFS times and modeled road speeds, not measurements of a real trip.",
+    basemapBy: "Basemap:",
   },
   corridors: {
     kicker: "Corridors",
@@ -178,6 +179,7 @@ const fr: Dict = {
     station: "station proposée",
     estimated: "Estimation modélisée",
     note: "Les anneaux sont des estimations modélisées à partir des horaires GTFS et de vitesses routières modélisées, pas des mesures d'un trajet réel.",
+    basemapBy: "Fond de carte :",
   },
   corridors: {
     kicker: "Corridors",
