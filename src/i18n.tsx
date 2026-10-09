@@ -115,12 +115,12 @@ const en = {
   downloads: {
     kicker: "Data",
     title: "Take the files.",
-    body: "The modeled isochrones and proposed-line station files, MIT licensed, as JSON. Marginal km² figures land in marginal.json when the background job finishes.",
+    body: "The modeled isochrones, proposed-line stations, and marginal km² analysis, MIT licensed, as JSON.",
     files: [
-      { name: "isochrones.json", desc: "Modeled isochrone polygons by mode and threshold (15/30/45/60 min), with km² and population where computed" },
+      { name: "isochrones.json", desc: "Modeled isochrone polygons by mode and threshold (15/30/45/60 min), with km² and population" },
       { name: "proposed_lines.json", desc: "Four proposed transit lines: stations, modeled speeds, published budgets with sources" },
     ],
-    marginal: { name: "marginal.json", desc: "Per-line marginal 30-minute km² and km² per billion dollars (appears when computed)" },
+    marginal: { name: "marginal.json", desc: "Per-line marginal 30-minute km² and km² per billion dollars" },
     download: "Download",
   },
   footer: {
@@ -243,12 +243,12 @@ const fr: Dict = {
   downloads: {
     kicker: "Données",
     title: "Prenez les fichiers.",
-    body: "Les isochrones modélisées et les fichiers de stations des lignes proposées, sous licence MIT, en JSON. Les chiffres de km² marginaux arriveront dans marginal.json quand le calcul de fond sera terminé.",
+    body: "Les isochrones modélisées, les stations des lignes proposées et l'analyse des km² marginaux, sous licence MIT, en JSON.",
     files: [
-      { name: "isochrones.json", desc: "Polygones d'isochrones modélisées par mode et seuil (15/30/45/60 min), avec km² et population quand calculés" },
+      { name: "isochrones.json", desc: "Polygones d'isochrones modélisées par mode et seuil (15/30/45/60 min), avec km² et population" },
       { name: "proposed_lines.json", desc: "Quatre lignes de transport proposées : stations, vitesses modélisées, budgets publiés avec sources" },
     ],
-    marginal: { name: "marginal.json", desc: "Km² marginaux de 30 min par ligne et km² par milliard de dollars (paraît quand calculé)" },
+    marginal: { name: "marginal.json", desc: "Km² marginaux de 30 min par ligne et km² par milliard de dollars" },
     download: "Télécharger",
   },
   footer: {
