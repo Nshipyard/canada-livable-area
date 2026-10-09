@@ -1,0 +1,199 @@
+{
+ "lines": [
+  {
+   "budget_cad_b": 27.2,
+   "budget_label": "$27.2B, June 2024 Metrolinx (build + 30-year operate); revised to $34B Aug 2026",
+   "budget_label_fr": "27,2 G$, Metrolinx juin 2024 (construction + 30 ans d'exploitation); révisé à 34 G$ en août 2026",
+   "id": "ontario-line",
+   "length_km": 15.6,
+   "mode": "subway",
+   "name": "Ontario Line",
+   "name_fr": "Ligne Ontario",
+   "stations": [
+    {
+     "lat": 43.6369,
+     "lon": -79.4157,
+     "name": "Exhibition"
+    },
+    {
+     "lat": 43.6453,
+     "lon": -79.3949,
+     "name": "King-Bathurst"
+    },
+    {
+     "lat": 43.6505,
+     "lon": -79.3967,
+     "name": "Queen-Spadina"
+    },
+    {
+     "lat": 43.6509,
+     "lon": -79.3867,
+     "name": "Osgoode"
+    },
+    {
+     "lat": 43.6523,
+     "lon": -79.379,
+     "name": "Queen"
+    },
+    {
+     "lat": 43.6546,
+     "lon": -79.3705,
+     "name": "Moss Park"
+    },
+    {
+     "lat": 43.6543,
+     "lon": -79.3613,
+     "name": "Corktown"
+    },
+    {
+     "lat": 43.653,
+     "lon": -79.3455,
+     "name": "East Harbour"
+    },
+    {
+     "lat": 43.6605,
+     "lon": -79.3385,
+     "name": "Leslieville"
+    },
+    {
+     "lat": 43.6668,
+     "lon": -79.3425,
+     "name": "Gerrard"
+    },
+    {
+     "lat": 43.6785,
+     "lon": -79.3448,
+     "name": "Pape"
+    },
+    {
+     "lat": 43.69,
+     "lon": -79.3448,
+     "name": "Cosburn"
+    },
+    {
+     "lat": 43.705,
+     "lon": -79.345,
+     "name": "Thorncliffe Park"
+    },
+    {
+     "lat": 43.718,
+     "lon": -79.34,
+     "name": "Flemingdon Park"
+    },
+    {
+     "lat": 43.7225,
+     "lon": -79.33,
+     "name": "Science Centre"
+    }
+   ],
+   "status": "under construction"
+  },
+  {
+   "budget_cad_b": 4.7,
+   "budget_label": "~$4.7B derived: 7.8 km x ~$600M/km (Toronto Region Board of Trade)",
+   "budget_label_fr": "~4,7 G$ (dérivé : 7,8 km x ~600 M$/km, Chambre de commerce de la région de Toronto)",
+   "id": "scarborough-extension",
+   "length_km": 7.8,
+   "mode": "subway",
+   "name": "Scarborough Subway Extension",
+   "name_fr": "Prolongement du métro de Scarborough",
+   "stations": [
+    {
+     "lat": 43.7328,
+     "lon": -79.2639,
+     "name": "Kennedy"
+    },
+    {
+     "lat": 43.7478,
+     "lon": -79.2635,
+     "name": "Lawrence East"
+    },
+    {
+     "lat": 43.7737,
+     "lon": -79.2578,
+     "name": "Scarborough Centre"
+    },
+    {
+     "lat": 43.7805,
+     "lon": -79.2635,
+     "name": "Sheppard East"
+    }
+   ],
+   "status": "under construction"
+  },
+  {
+   "budget_cad_b": 3.97,
+   "budget_label": "$3.97B, 2026 estimate (construction)",
+   "budget_label_fr": "3,97 G$, estimation 2026 (construction)",
+   "id": "eglinton-west",
+   "length_km": 9.2,
+   "mode": "lrt",
+   "name": "Eglinton Crosstown West Extension",
+   "name_fr": "Prolongement ouest d'Eglinton Crosstown",
+   "stations": [
+    {
+     "lat": 43.688,
+     "lon": -79.4858,
+     "name": "Mount Dennis"
+    },
+    {
+     "lat": 43.6845,
+     "lon": -79.4988,
+     "name": "Jane"
+    },
+    {
+     "lat": 43.684,
+     "lon": -79.5114,
+     "name": "Scarlett"
+    },
+    {
+     "lat": 43.6823,
+     "lon": -79.5266,
+     "name": "Royal York"
+    },
+    {
+     "lat": 43.6798,
+     "lon": -79.539,
+     "name": "Islington"
+    },
+    {
+     "lat": 43.6772,
+     "lon": -79.5509,
+     "name": "Kipling"
+    },
+    {
+     "lat": 43.6745,
+     "lon": -79.5632,
+     "name": "Martin Grove"
+    },
+    {
+     "lat": 43.6661,
+     "lon": -79.5878,
+     "name": "Renforth"
+    }
+   ],
+   "status": "under construction"
+  },
+  {
+   "budget_cad_b": 13.5,
+   "budget_label": "$13.5B, 2017 federal announcement; later program estimates range $13.5-27B",
+   "budget_label_fr": "13,5 G$, annonce fédérale 2017; estimations ultérieures de 13,5 à 27 G$",
+   "id": "go-expansion",
+   "length_km": null,
+   "mode": "regional-rail",
+   "name": "GO Expansion (frequency uplift)",
+   "name_fr": "Expansion de GO (fréquence accrue)",
+   "scenario": "15-minute two-way all-day service on Lakeshore West, Lakeshore East, Kitchener, Barrie, Stouffville corridors. Modeled as wait-per-boarding on GO edges reduced from 4 to 2 minutes (documented scenario, not a capacity model).",
+   "scenario_fr": "Service bidirectionnel aux 15 minutes toute la journée sur cinq corridors. Modélisé comme une réduction de l'attente de 4 à 2 minutes sur les tronçons GO (scénario documenté).",
+   "status": "phased delivery"
+  }
+ ],
+ "meta": {
+  "dwell_min_per_station": 0.5,
+  "note": "Station coordinates are approximate (nearest major intersection, +/-300m) from published Metrolinx alignments; Eglinton West stations were corrected 2026-10-09 against geocoded Eglinton Ave W intersections and the TTC GTFS Mount Dennis LRT platform (stop 16067). Travel times are modeled: inter-station distance / assumed average speed + dwell. Budgets are publicly reported figures with source and date; definitions vary (build-only vs build+operate) and are labeled per line.",
+  "speeds_kmh": {
+   "lrt": 28,
+   "subway": 32
+  }
+ }
+}

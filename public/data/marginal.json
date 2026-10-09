@@ -1,0 +1,62 @@
+{
+ "base_km2_30min": 82.5,
+ "base_km2_45min": 456.5,
+ "lines": {
+  "ontario-line": {
+   "name": "Ontario Line",
+   "name_fr": "Ligne Ontario",
+   "budget_cad_b": 27.2,
+   "budget_label": "$27.2B, June 2024 Metrolinx (build + 30-year operate); revised to $34B Aug 2026",
+   "budget_label_fr": "27,2 G$, Metrolinx juin 2024 (construction + 30 ans d'exploitation); r\u00e9vis\u00e9 \u00e0 34 G$ en ao\u00fbt 2026",
+   "km2_30min": 83.5,
+   "marginal_km2": 1.0,
+   "km2_per_bcad": 0.04,
+   "km2_45min": 457.2,
+   "marginal_km2_45": 0.7,
+   "km2_per_bcad_45": 0.03,
+   "status": "under construction"
+  },
+  "scarborough-extension": {
+   "name": "Scarborough Subway Extension",
+   "name_fr": "Prolongement du m\u00e9tro de Scarborough",
+   "budget_cad_b": 4.7,
+   "budget_label": "~$4.7B derived: 7.8 km x ~$600M/km (Toronto Region Board of Trade)",
+   "budget_label_fr": "~4,7 G$ (d\u00e9riv\u00e9 : 7,8 km x ~600 M$/km, Chambre de commerce de la r\u00e9gion de Toronto)",
+   "km2_30min": 82.5,
+   "marginal_km2": 0.0,
+   "km2_per_bcad": 0.0,
+   "km2_45min": 458.0,
+   "marginal_km2_45": 1.5,
+   "km2_per_bcad_45": 0.32,
+   "status": "under construction"
+  },
+  "eglinton-west": {
+   "name": "Eglinton Crosstown West Extension",
+   "name_fr": "Prolongement ouest d'Eglinton Crosstown",
+   "budget_cad_b": 3.97,
+   "budget_label": "$3.97B, 2026 estimate (construction)",
+   "budget_label_fr": "3,97 G$, estimation 2026 (construction)",
+   "km2_30min": 82.5,
+   "marginal_km2": 0.0,
+   "km2_per_bcad": 0.0,
+   "km2_45min": 456.5,
+   "marginal_km2_45": 0.0,
+   "km2_per_bcad_45": 0.0,
+   "status": "under construction"
+  },
+  "go-expansion": {
+   "name": "GO Expansion (frequency uplift)",
+   "name_fr": "Expansion de GO (fr\u00e9quence accrue)",
+   "budget_cad_b": 13.5,
+   "budget_label": "$13.5B, 2017 federal announcement; later program estimates range $13.5-27B",
+   "budget_label_fr": "13,5 G$, annonce f\u00e9d\u00e9rale 2017; estimations ult\u00e9rieures de 13,5 \u00e0 27 G$",
+   "km2_30min": 100.2,
+   "marginal_km2": 17.7,
+   "km2_per_bcad": 1.31,
+   "km2_45min": 516.0,
+   "marginal_km2_45": 59.5,
+   "km2_per_bcad_45": 4.41,
+   "status": "phased delivery"
+  }
+ }
+}
