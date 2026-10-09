@@ -100,6 +100,18 @@ export function Nav() {
             <a href="https://canada.nshipyard.com" className="text-[16px] font-medium">
               ← {t.nav.back}
             </a>
+            <div className="flex items-center gap-2 pt-1">
+              {(["en", "fr"] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => { setLang(l); setOpen(false); }}
+                  className={`rounded-full px-4 py-2 text-[15px] font-medium uppercase ${lang === l ? "bg-ink text-white" : "border border-line text-ink/60"}`}
+                  aria-pressed={lang === l}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
