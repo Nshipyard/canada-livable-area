@@ -21,6 +21,21 @@ export const metadata: Metadata = {
     url: "https://livable.canada.nshipyard.com",
     siteName: "Open Nshipyard",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Livable Area: how much of Toronto is within 30 minutes",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Livable Area: how much of Toronto is within 30 minutes",
+    description:
+      "Modeled isochrones from Union Station, Toronto, by transit and car. Which proposed line buys the most 30-minute land per billion dollars?",
+    images: ["/og-image.png"],
   },
 };
 
